@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 files='/data/tweets/geoTwitter21-01-01.zip
 /data/tweets/geoTwitter21-01-02.zip
@@ -23,7 +23,11 @@ echo '==========================================================================
 # Since pg_normalized_batch is faster,
 # we will use that code to load the data.
 
+# time ( echo "$files" | parallel ./load_denormalized.sh )
+
 echo '================================================================================'
 echo 'load pg_normalized_batch'
 echo '================================================================================'
 # FIXME: copy your solution to the previous problem here
+time parallel ./load_normalized_batch.sh ::: $files
+
